@@ -1,0 +1,46 @@
+.model small
+.stack 100h
+.data
+
+msg db "Yes.$"
+msg1 db "No.$"
+msg3 db 010,013,"$"
+
+.code
+main proc
+    mov ax,@data
+    mov ds,ax
+    
+    mov ah,1
+    int 21h
+    mov bl,al
+    
+    mov ah,1
+    int 21h
+    mov cl,al
+    
+    lea dx,msg3
+    mov ah,09h
+    int 21h
+    
+    cmp bl,cl
+    je y
+    jne n
+    
+    y:
+    lea dx,msg
+    mov ah,09h
+    int 21h
+    jmp exit
+    
+    n:
+    lea dx,msg1
+    mov ah,09h
+    int 21h
+    jmp exit
+    
+    exit:
+    mov ah,4ch
+    int 21h
+    main endp
+end main

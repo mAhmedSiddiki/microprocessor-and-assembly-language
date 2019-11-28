@@ -1,0 +1,38 @@
+.model small
+.stack 100h
+.data
+
+msg db 100 dup('$')
+msg1 db "Result: $"
+
+.code
+main proc
+    
+    mov ax,@data
+    mov ds,ax
+    
+    mov si,offset msg
+    
+    l1:
+    mov ah,1
+    int 21h
+    
+    cmp al,13
+    je n
+    mov [si],al
+    inc si
+    jmp l1
+    
+    n:
+    lea dx,msg1
+    mov ah,09h
+    int 21h
+    
+    mov dx, offset msg
+    mov ah,09h
+    int 21h
+    
+    mov ah,4ch
+    int 21h
+    main endp
+end main

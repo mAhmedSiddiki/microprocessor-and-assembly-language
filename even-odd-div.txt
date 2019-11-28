@@ -1,0 +1,47 @@
+.model small
+.stack 100h
+.data
+
+msg db "Enter number: $"
+ei_suno db "Even number.$"
+haa_bolo db "Odd number.$"
+
+.code
+main proc
+    
+    mov ax,@data
+    mov ds,ax
+    
+    lea dx,msg
+    mov ah,09h
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov dl,al
+    
+    mov bl,2
+    div bl
+    
+    cmp ah,0
+    je even
+    jne odd
+    jmp exit
+    
+    even:
+    lea dx,ei_suno
+    mov ah,09h
+    int 21h
+    jmp exit
+    
+    odd:
+    lea dx,haa_bolo
+    mov ah,09h
+    int 21h
+    jmp exit
+    
+    exit:        
+    mov ah,4ch
+    int 21h
+    main endp
+end main
