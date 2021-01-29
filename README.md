@@ -10,7 +10,7 @@ Daffodil International University
 
 
 contact:
-https://marjuk-ahmed-siddiki.github.io/marjuk.github.io/
+https://marjukahmedsiddiki.blogspot.com/p/contact-me.html
 
 
 
